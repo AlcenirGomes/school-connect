@@ -33,7 +33,17 @@ def cadastrar_professor():
     'salario': request.json['salario']
   }
   professores[id] = novo_professor
-  return novo_professor
+  return {'message': 'Novo professor cadastrado com sucesso.'}
+
+# Deletar Professores
+# Metodo DELETE
+@app.route('/professores/<int:professor_id>', methods=['DELETE'])
+def deletar_professor(professor_id):
+  if professor_id in professores.keys():
+    del professores[professor_id]
+    return {'message': 'Professor excluído com sucesso'}
+  else:
+    return {'error': 'Professor não encontrado'}
     
 # Consultar Alunos
 # Metodo GET
@@ -47,7 +57,7 @@ def consultar_alunos():
 @app.route('/alunos/<int:aluno_id>', methods=['GET'])
 def consultar_aluno(aluno_id):
   return alunos.get(
-    aluno_id, {'error': 'Professor não encontrado'}
+    aluno_id, {'error': 'Aluno não encontrado'}
   )
 
 # Cadastrar Alunos
@@ -66,7 +76,7 @@ def cadastrar_aluno():
     'turma_id': request.json['turma_id']
   }
   alunos[id] = novo_aluno
-  return novo_aluno
+  return {'message': 'Novo aluno cadastrado com sucesso.'}
 
 if __name__ == '__main__':
   app.run(debug=True)
