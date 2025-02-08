@@ -50,5 +50,23 @@ def consultar_aluno(aluno_id):
     aluno_id, {'error': 'Professor não encontrado'}
   )
 
+# Cadastrar Alunos
+# Metodo POST
+@app.route('/alunos', methods=['POST'])
+def cadastrar_aluno():
+  id = sorted(alunos.keys())[-1] + 1
+  novo_aluno = {
+    'id': request.json['id'],
+    'nome': request.json['nome'],
+    'idade': request.json['idade'],
+    'data_nascimento': request.json['data_nascimento'],
+    'nota_primeiro_semestre': request.json['nota_primeiro_semestre'],
+    'nota_segundo_semestre': request.json['nota_segundo_semestre'],
+    'media_final': request.json['media_final'],
+    'turma_id': request.json['turma_id']
+  }
+  alunos[id] = novo_aluno
+  return novo_aluno
+
 if __name__ == '__main__':
   app.run(debug=True)
