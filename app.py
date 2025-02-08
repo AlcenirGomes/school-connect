@@ -44,6 +44,21 @@ def deletar_professor(professor_id):
     return {'message': 'Professor excluído com sucesso'}
   else:
     return {'error': 'Professor não encontrado'}
+
+# Alerar ou atualizar Professores por ID.
+# Metodo PUT
+@app.route('/professores/<int:professor_id>', methods=['PUT'])
+def atualizar_professor(professor_id):
+	if professor_id in professores.keys():
+		professores[professor_id]['id']=request.json['id']
+		professores[professor_id]['nome']=request.json['nome']
+		professores[professor_id]['idade']=request.json['idade']
+		professores[professor_id]['data_nascimento']=request.json['data_nascimento']
+		professores[professor_id]['disciplina']=request.json['disciplina']
+		professores[professor_id]['salario']=request.json['salario']
+		return {'message': 'Professor atualizado com sucesso.'}
+	else:
+		return {'error': 'Professor não encontrado.'}
     
 # Consultar Alunos
 # Metodo GET
