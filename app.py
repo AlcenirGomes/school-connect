@@ -45,7 +45,7 @@ def deletar_professor(professor_id):
   else:
     return {'error': 'Professor não encontrado'}
 
-# Alerar ou atualizar Professores por ID.
+# Alterar ou atualizar Professores por ID.
 # Metodo PUT
 @app.route('/professores/<int:professor_id>', methods=['PUT'])
 def atualizar_professor(professor_id):
@@ -100,6 +100,23 @@ def delete_aluno(aluno_id):
 	if aluno_id in alunos.keys():
 		del alunos[aluno_id]
 		return {'message': 'Aluno deletado com sucesso.'}
+	else:
+		return {'error': 'Aluno não encontrado.'}
+
+# Alterar ou atualizar Alunos por ID.
+# Metodo PUT
+@app.route('/alunos/<int:aluno_id>', methods=['PUT'])
+def atualizar_aluno(aluno_id):
+	if aluno_id in alunos.keys():
+		alunos[aluno_id]['id']=request.json['id']
+		alunos[aluno_id]['nome']=request.json['nome']
+		alunos[aluno_id]['idade']=request.json['idade']
+		alunos[aluno_id]['data_nascimento']=request.json['data_nascimento']
+		alunos[aluno_id]['nota_primeiro_semestre']=request.json['nota_primeiro_semestre']
+		alunos[aluno_id]['nota_segundo_semestre']=request.json['nota_segundo_semestre']
+		alunos[aluno_id]['media_final']=request.json['media_final']
+		alunos[aluno_id]['turma_id']=request.json['turma_id']
+		return {'message': 'Aluno atualizado com sucesso.'}
 	else:
 		return {'error': 'Aluno não encontrado.'}
 
