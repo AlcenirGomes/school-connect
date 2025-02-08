@@ -4,23 +4,23 @@ from aluno import alunos
 
 app = Flask(__name__)
 
-# Consultar Professores
-# Metodo GET
+# Consultar Professores.
+# Metodo GET.
 @app.route('/professores', methods=['GET'])
 def consultar_professores():
   return professores
 
 # Consultar professor por ID.
 # Quando for consultar, prestar atenção na sintaxe.
-# Metodo GET
+# Metodo GET.
 @app.route('/professores/<int:professor_id>', methods=['GET'])
 def consultar_professor(professor_id):
   return professores.get(
-    professor_id, {'error': 'Professor não encontrado'}
+    professor_id, {'error': 'Professor não encontrado.'}
   )
 
-# Cadastrar Professores
-# Metodo POST
+# Cadastrar Professores.
+# Metodo POST.
 @app.route('/professores', methods=['POST'])
 def cadastrar_professor():
   id = sorted(professores.keys())[-1] + 1
@@ -35,18 +35,18 @@ def cadastrar_professor():
   professores[id] = novo_professor
   return {'message': 'Novo professor cadastrado com sucesso.'}
 
-# Deletar Professores
-# Metodo DELETE
+# Deletar Professores.
+# Metodo DELETE.
 @app.route('/professores/<int:professor_id>', methods=['DELETE'])
 def deletar_professor(professor_id):
   if professor_id in professores.keys():
     del professores[professor_id]
-    return {'message': 'Professor excluído com sucesso'}
+    return {'message': 'Professor excluído com sucesso.'}
   else:
-    return {'error': 'Professor não encontrado'}
+    return {'error': 'Professor não encontrado.'}
 
 # Alterar ou atualizar Professores por ID.
-# Metodo PUT
+# Metodo PUT.
 @app.route('/professores/<int:professor_id>', methods=['PUT'])
 def atualizar_professor(professor_id):
 	if professor_id in professores.keys():
@@ -60,23 +60,23 @@ def atualizar_professor(professor_id):
 	else:
 		return {'error': 'Professor não encontrado.'}
     
-# Consultar Alunos
-# Metodo GET
+# Consultar Alunos.
+# Metodo GET.
 @app.route('/alunos', methods=['GET'])
 def consultar_alunos():
   return alunos
 
 # Consultar aluno por ID.
 # Quando for consultar, prestar atenção na sintaxe.
-# Metodo GET
+# Metodo GET.
 @app.route('/alunos/<int:aluno_id>', methods=['GET'])
 def consultar_aluno(aluno_id):
   return alunos.get(
-    aluno_id, {'error': 'Aluno não encontrado'}
+    aluno_id, {'error': 'Aluno não encontrado.'}
   )
 
-# Cadastrar Alunos
-# Metodo POST
+# Cadastrar Alunos.
+# Metodo POST.
 @app.route('/alunos', methods=['POST'])
 def cadastrar_aluno():
   id = sorted(alunos.keys())[-1] + 1
@@ -93,8 +93,8 @@ def cadastrar_aluno():
   alunos[id] = novo_aluno
   return {'message': 'Novo aluno cadastrado com sucesso.'}
 
-# Deletar Alunos
-# Metodo DELETE
+# Deletar Alunos.
+# Metodo DELETE.
 @app.route('/alunos/<int:aluno_id>', methods=['DELETE'])
 def delete_aluno(aluno_id):
 	if aluno_id in alunos.keys():
@@ -104,7 +104,7 @@ def delete_aluno(aluno_id):
 		return {'error': 'Aluno não encontrado.'}
 
 # Alterar ou atualizar Alunos por ID.
-# Metodo PUT
+# Metodo PUT.
 @app.route('/alunos/<int:aluno_id>', methods=['PUT'])
 def atualizar_aluno(aluno_id):
 	if aluno_id in alunos.keys():
