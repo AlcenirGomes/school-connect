@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, request
 from professor import professores
 from aluno import alunos
 
@@ -19,6 +19,22 @@ def consultar_professor(professor_id):
     professor_id, {'error': 'Professor não encontrado'}
   )
 
+# Cadastrar Professores
+# Metodo POST
+@app.route('/professores', methods=['POST'])
+def cadastrar_professor():
+  id = sorted(professores.keys())[-1] + 1
+  novo_professor = {
+    'id': request.json['id'],
+    'nome': request.json['nome'],
+    'idade': request.json['idade'],
+    'data_nascimento': request.json['data_nascimento'],
+    'disciplina': request.json['disciplina'],
+    'salario': request.json['salario']
+  }
+  professores[id] = novo_professor
+  return novo_professor
+    
 # Consultar Alunos
 # Metodo GET
 @app.route('/alunos', methods=['GET'])
