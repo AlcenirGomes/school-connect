@@ -93,5 +93,15 @@ def cadastrar_aluno():
   alunos[id] = novo_aluno
   return {'message': 'Novo aluno cadastrado com sucesso.'}
 
+# Deletar Alunos
+# Metodo DELETE
+@app.route('/alunos/<int:aluno_id>', methods=['DELETE'])
+def delete_aluno(aluno_id):
+	if aluno_id in alunos.keys():
+		del alunos[aluno_id]
+		return {'message': 'Aluno deletado com sucesso.'}
+	else:
+		return {'error': 'Aluno não encontrado.'}
+
 if __name__ == '__main__':
   app.run(debug=True)
