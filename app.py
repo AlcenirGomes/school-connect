@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, jsonify, request
 from professor import professores
 from aluno import alunos
 
@@ -81,7 +81,7 @@ def consultar_aluno(aluno_id):
 def cadastrar_aluno():
   id = sorted(alunos.keys())[-1] + 1
   novo_aluno = {
-    'id': request.json['id'],
+    'id':request.json['id'],
     'nome': request.json['nome'],
     'idade': request.json['idade'],
     'data_nascimento': request.json['data_nascimento'],
